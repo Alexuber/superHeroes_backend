@@ -11,16 +11,18 @@ router.get("/:heroId", isValidId, heroesController.getHeroById);
 
 router.post(
   "/",
-  upload.array("avatar", 10),
+  upload.array("images[]", 10),
   validateBody(schemas.heroAddSchema),
   heroesController.addNewHero
 );
 
 router.delete("/:heroId", isValidId, heroesController.deleteHero);
-
+router.delete("/:heroId/images/:imagePath", heroesController.deleteHeroImage);
 router.put(
   "/:heroId",
   isValidId,
+  upload.array("images[]", 10),
+
   validateBody(schemas.heroAddSchema),
   heroesController.editHero
 );

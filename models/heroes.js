@@ -48,7 +48,7 @@ const heroAddSchema = Joi.object({
     .messages({ "any.required": "missing required real_name field" }),
   origin_description: Joi.string()
     .min(3)
-    .max(300)
+    .max(1000)
     .required()
     .messages({ "any.required": "missing required origin_description field" }),
   catch_phrase: Joi.string()
