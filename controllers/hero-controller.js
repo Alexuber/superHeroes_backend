@@ -4,23 +4,15 @@ const ctrlWrapper = require("../utils/ctrlWrapper");
 const Jimp = require("jimp");
 
 const { Hero } = require("../models/heroes");
-// const avatarDir = path.resolve("public", "avatars");
 
 const getAllHeroes = async (req, res, next) => {
   try {
-    // const { _id: owner } = req.user;
-
     const { page = 1, limit = 30 } = req.query;
     const skip = (page - 1) * limit;
-    // const query = { owner };
-    // if (favorite !== undefined) {
-    //   query.favorite = favorite;
-    // }
     const result = await Hero.find({}, "-createdAt -updatedAt", {
       skip,
       limit,
     });
-    // .populate("owner", "name number");
     res.json(result);
   } catch (error) {
     next(error);
@@ -67,7 +59,6 @@ const addNewHero = async (req, res, next) => {
 const deleteHero = async (req, res, next) => {
   try {
     const { heroId } = req.params;
-
     const result = await Hero.findByIdAndRemove(heroId);
 
     result
@@ -104,10 +95,8 @@ const editHero = async (req, res, next) => {
         const imageURL = path.join("images", filename);
         images.push(imageURL);
       }
-
       req.body.images = images;
     }
-
     const result = await Hero.findByIdAndUpdate({ _id: heroId }, req.body, {
       new: true,
     });
@@ -127,14 +116,13 @@ const deleteHeroImage = async (req, res, next) => {
     }
 
     const { images } = hero;
-
     const index = images.findIndex((image) => image.includes(imagePath));
+
     if (index === -1) {
       return res.status(404).json({ message: "Image not found for the hero" });
     }
 
     images.splice(index, 1);
-
     await hero.save();
 
     res.status(200).json({ message: "Image deleted successfully" });

@@ -1,22 +1,3 @@
-// const multer = require("multer");
-// const path = require("path");
-
-// const tempDir = path.resolve("temp");
-
-// const multerConfig = multer.diskStorage({
-//   destination: tempDir,
-//   filename: (req, file, cb) => {
-//     const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-//     cb(null, file.fieldname + "_" + uniquePrefix + ".jpg");
-//   },
-// });
-
-// const upload = multer({
-//   storage: multerConfig,
-// });
-
-// module.exports = upload;
-
 const multer = require("multer");
 const path = require("path");
 
@@ -33,12 +14,10 @@ const multerConfig = multer.diskStorage({
 const upload = multer({
   storage: multerConfig,
   fileFilter: (req, file, cb) => {
-    // Allowed file formats
     const allowedFormats = ["image/jpeg", "image/jpg", "image/png"];
 
-    // Check if the file format is allowed
     if (allowedFormats.includes(file.mimetype)) {
-      cb(null, true); // Accept the file
+      cb(null, true);
     } else {
       cb(
         new Error(
@@ -46,6 +25,9 @@ const upload = multer({
         )
       );
     }
+  },
+  limits: {
+    fileSize: 2048 * 2048,
   },
 });
 

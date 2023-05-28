@@ -60,31 +60,10 @@ const heroAddSchema = Joi.object({
     .items(Joi.string().min(3).max(100))
     .required()
     .messages({ "any.required": "missing required superpowers field" }),
-  // images: Joi.array()
-  // .items(Joi.string())
-  // .required()
-  // .messages({ "any.required": "missing required images field" }),
 });
-
-// const contactUpdateSchema = Joi.object({
-//   name: Joi.string().min(3).max(30),
-//   email: Joi.string().email({
-//     minDomainSegments: 2,
-//   }),
-//   phone: [Joi.string(), Joi.number().min(10).max(15)],
-//   favorite: Joi.boolean(),
-// });
-
-// const contactUpdateFavoriteSchema = Joi.object({
-//   favorite: Joi.boolean()
-//     .required()
-//     .messages({ "any.required": "missing field favorite" }),
-// });
 
 const schemas = {
   heroAddSchema,
-  // contactUpdateSchema,
-  // contactUpdateFavoriteSchema,
 };
 
 heroSchema.post("save", handleMongooseError);
