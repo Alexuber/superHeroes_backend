@@ -42,6 +42,7 @@ const addNewHero = async (req, res, next) => {
       image.resize(1280, 720).quality(60).write(resultUpload);
       await fs.unlink(tempUpload);
       const imageURL = path.join("images", filename);
+
       images.push(imageURL);
     }
 
