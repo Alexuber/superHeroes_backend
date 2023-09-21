@@ -7,7 +7,9 @@ const multerConfig = multer.diskStorage({
   destination: tempDir,
   filename: (req, file, cb) => {
     const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "_" + uniquePrefix + ".jpg");
+    const fileExtension = path.extname(file.originalname);
+    const filename = file.fieldname + "_" + uniquePrefix + fileExtension;
+    cb(null, filename);
   },
 });
 
@@ -30,5 +32,14 @@ const upload = multer({
     fileSize: 2048 * 2048,
   },
 });
+
+upload.filename = (req, file, cb) => {
+  const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+  const fileExtension = path.extname(file.originalname);
+  const filename = file.fieldname + "_" + uniquePrefix + fileExtension;
+
+  cb(null, filename);
+  return filename;
+};
 
 module.exports = upload;
