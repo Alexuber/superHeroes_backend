@@ -16,8 +16,6 @@ app.use(express.static("public"));
 app.use("/api/heroes", heroesRouter);
 
 app.use((req, res) => {
-  console.log("🆑  req:", req.files);
-
   res.status(404).json({ message: "Not found" });
 });
 

@@ -1,11 +1,8 @@
 const { Hero } = require("../models/heroes");
 
-async function getAllHeroes(page = 1, limit = 30) {
-  const skip = (page - 1) * limit;
-  return Hero.find({}, "-createdAt -updatedAt", {
-    skip,
-    limit,
-  });
+async function getAllHeroes() {
+  // const skip = (page - 1) * limit;
+  return Hero.find({}, "-createdAt -updatedAt");
 }
 
 async function getHeroById(heroId) {

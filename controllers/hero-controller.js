@@ -4,8 +4,7 @@ const heroesService = require("../services/heroesService");
 
 async function getAllHeroes(req, res, next) {
   try {
-    const { page = 1, limit = 30 } = req.query;
-    const result = await heroesService.getAllHeroes(page, limit);
+    const result = await heroesService.getAllHeroes();
     res.json(result);
   } catch (error) {
     next(error);
