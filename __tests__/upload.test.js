@@ -1,4 +1,4 @@
-const upload = require("./upload");
+const upload = require("../middlewares/upload");
 
 const req = {};
 const file = {

@@ -1,11 +1,10 @@
 const fs = require("fs/promises");
 const path = require("path");
 const Jimp = require("jimp");
-const { processImages } = require("./imageHelper"); // Замените путь на корректный путь к вашему файлу imageHelper
+const { processImages } = require("../helpers/imageHelper");
 
 describe("processImages", () => {
   test("should process uploaded images and return an array of image URLs", async () => {
-    // Подготавливаем фейковые данные для теста
     const req = {
       files: [
         {
@@ -19,16 +18,11 @@ describe("processImages", () => {
       ],
     };
 
-    // Вызываем функцию processImages с фейковыми данными
     const result = await processImages(req);
-
-    // Проверяем, что результат является массивом
     expect(Array.isArray(result)).toBe(true);
 
-    // Проверяем, что массив содержит ожидаемое количество URL-ов
     expect(result.length).toBe(2);
 
-    // Проверяем, что URL-ы соответствуют ожидаемому формату
     const tempFile1Exists = await fs
       .access("/fake/temp/image1.jpg")
       .then(() => true)

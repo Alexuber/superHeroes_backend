@@ -67,7 +67,7 @@ async function editHero(req, res, next) {
       req.body.images = images;
     }
 
-    const result = await heroesService.editHero(heroId, req.body); // Используем правильный формат вызова функции
+    const result = await heroesService.editHero(heroId, req.body);
     res.json(result);
   } catch (error) {
     next(error);
