@@ -1,4 +1,4 @@
-const handleMongooseError = require("./handleMongooseError");
+const handleMongooseError = require("../helpers/handleMongooseError");
 
 describe("handleMongooseError", () => {
   test('set the error status to 409 if the error code is 11000 and the error name is "MongoServerError"', () => {

@@ -1,7 +1,6 @@
 const { Hero } = require("../models/heroes");
 
 async function getAllHeroes() {
-  // const skip = (page - 1) * limit;
   return Hero.find({}, "-createdAt -updatedAt");
 }
 
@@ -14,7 +13,8 @@ async function addNewHero(heroData) {
 }
 
 async function deleteHero(heroId) {
-  return Hero.findByIdAndRemove(heroId);
+  const deletedHero = await Hero.findByIdAndRemove(heroId);
+  return deletedHero || null;
 }
 
 async function editHero(heroId, newData) {

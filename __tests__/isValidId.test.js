@@ -1,4 +1,4 @@
-const isValidId = require("./isValidId");
+const isValidId = require("../middlewares/isValidId");
 const { isValidObjectId } = require("mongoose");
 const HttpError = require("../helpers/HttpError");
 
