@@ -76,8 +76,8 @@ async function editHero(req, res, next) {
 
 const deleteHeroImage = async (req, res, next) => {
   try {
-    const { id, selectedImage } = req.params;
-    await heroesService.deleteHeroImage(id, selectedImage);
+    const { heroId, imagePath } = req.params;
+    await heroesService.deleteHeroImage(heroId, imagePath);
     res.status(200).json({ message: "Image deleted successfully" });
   } catch (error) {
     next(error);
